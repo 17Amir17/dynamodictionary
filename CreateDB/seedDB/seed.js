@@ -34,7 +34,8 @@ async function writeBatch(batch) {
     const params = createBatchParams(batch);
     await dynamodb.batchWrite(params).promise();
   } catch (error) {
-    console.log(error);
+    //console.log(error);
+    console.log("dupe err");
   }
 }
 
@@ -44,6 +45,7 @@ async function run() {
   for (let i = 0; i < dictionary.length; i++) {
     if ((i + 1) % (Batch_Size + 1) === 0) {
       await writeBatch(batch);
+      console.log(`added batch ${(i+1)/26 + 1}/${dictionary.length/25}`);
       batch = [];
     } else {
       batch.push(dictionary[i]);
