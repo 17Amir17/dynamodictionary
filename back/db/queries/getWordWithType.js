@@ -2,7 +2,7 @@ const dynamodb = require('../dynamodb');
 
 
 async function getWordWithType(word, type){
-    if(word.length > 1){
+    if(word.length >= 1){
         word = word[0].toUpperCase() + word.substr(1);
     }
     const params = {
