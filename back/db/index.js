@@ -1,3 +1,9 @@
-const getWord = require('./getWord');
+const getWord = require("./queries/getWord");
+const getWordWithType = require("./queries/getWordWithType");
 
-module.exports = {getWord};
+(async () => {
+    console.log(await getWordWithType('A', 'prep.'));
+})()
+
+module.exports = { getWord, getWordWithType };
+

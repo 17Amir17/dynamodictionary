@@ -1,4 +1,4 @@
-const dynamodb = require('./dynamodb');
+const dynamodb = require('../dynamodb');
 
 
 function getTypes(items){
