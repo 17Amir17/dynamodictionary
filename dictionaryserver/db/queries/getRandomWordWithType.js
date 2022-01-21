@@ -1,4 +1,4 @@
-const dynamodb = require("../dynamodb");
+import dynamodb from "../dynamodb";
 
 async function getRandomWordWithType(type, letter='ABCDEFGHIJKLMNOPQRSTUVWXYZ'[Math.floor(Math.random() * 26)]) {
   console.log(letter);
@@ -28,4 +28,4 @@ async function getRandomWordWithType(type, letter='ABCDEFGHIJKLMNOPQRSTUVWXYZ'[M
   }
 }
 
-module.exports = getRandomWordWithType;
+export default getRandomWordWithType;

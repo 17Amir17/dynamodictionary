@@ -1,4 +1,4 @@
-const dynamodb = require('../dynamodb');
+import dynamodb from '../dynamodb';
 
 
 function getTypes(items){
@@ -31,6 +31,7 @@ async function getWord(word){
     try {
         const res = await dynamodb.query(params).promise();
         const types = getTypes(res.Items);
+        console.log(res);
         if(types.length > 1){
             return types;
         }else{
@@ -38,7 +39,8 @@ async function getWord(word){
         }
     } catch (error) {
         console.log(error);
+        return error;
     }
 }
 
-module.exports = getWord;
+export default getWord;

@@ -1,4 +1,4 @@
-const dynamodb = require('../dynamodb');
+import dynamodb from '../dynamodb';
 
 
 async function getWordWithType(word, type){
@@ -28,4 +28,4 @@ async function getWordWithType(word, type){
     }
 }
 
-module.exports = getWordWithType;
+export default getWordWithType;
