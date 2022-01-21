@@ -1,12 +1,11 @@
 const dynamodb = require("../dynamodb");
 
-async function getRandomWordWithType(type) {
-    const letter = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'[Math.floor(Math.random() * 26)]
-    console.log(letter);
+async function getRandomWordWithType(type, letter='ABCDEFGHIJKLMNOPQRSTUVWXYZ'[Math.floor(Math.random() * 26)]) {
+  console.log(letter);
   const params = {
     TableName: "Dictionary",
     //ProjectionExpression: "", //What I want back
-    FilterExpression: "contains ( #word, :word ) and #type = :type", //Condition
+    FilterExpression: "begins_with  ( #word, :word ) and #type = :type", //Condition
     ExpressionAttributeNames: {
       //provides name substitution
       "#word": "word",
@@ -22,7 +21,7 @@ async function getRandomWordWithType(type) {
 
   try {
     const res = await dynamodb.scan(params).promise();
-    return res;
+    return res.Items[Math.floor(Math.random() * (res.Items.length))];
   } catch (error) {
       console.log(error);
     return { Items: [] };
