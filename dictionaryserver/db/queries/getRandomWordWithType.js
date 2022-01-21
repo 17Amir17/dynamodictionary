@@ -24,7 +24,7 @@ async function getRandomWordWithType(type, letter='ABCDEFGHIJKLMNOPQRSTUVWXYZ'[M
     return res.Items[Math.floor(Math.random() * (res.Items.length))];
   } catch (error) {
       console.log(error);
-    return { Items: [] };
+    return {};
   }
 }
 
