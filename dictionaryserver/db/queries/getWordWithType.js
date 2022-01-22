@@ -22,9 +22,9 @@ async function getWordWithType(word, type){
 
     try {
         const res = await dynamodb.query(params).promise();
-        return res;
+        return res.Items;
     } catch (error) {
-        return {Items: []};
+        return [];
     }
 }
 

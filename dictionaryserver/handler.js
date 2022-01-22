@@ -1,10 +1,12 @@
 import express from "express";
+import cors from 'cors'
 import serverless from "serverless-http";
 import { getWord, getWordWithType, getRandomWordWithType } from "./db/index";
 
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 
 app.get("/partOfSpeech/:part", (req, res) => {
   const parts = [
@@ -60,7 +62,7 @@ app.get("/:word/:partOfSpeech", (req, res) => {
     "p. pr. & vb. n.",
   ];
   const word = req.params.word;
-  const partOfSpeech = req.params.partOfSpeech;
+  let partOfSpeech = req.params.partOfSpeech;
   if (!word || !partOfSpeech || !parts.includes(partOfSpeech)) throw "Invalid input";
   switch (partOfSpeech) {
     case "none":
